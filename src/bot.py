@@ -2,7 +2,9 @@ import requests
 import json
 import random
 import os
-
+from dotenv import load_dotenv
+# Load environment variables from .env file if present
+load_dotenv()
 
 url = 'https://api-clicker.pixelverse.xyz/api/users'
 def make_post_request(url,secret,tgID):
@@ -40,9 +42,10 @@ def make_post_request(url,secret,tgID):
 
 def main():
     # Access environment variables
-    secret_value = os.environ.get('secret')
-    tg_id_value = os.environ.get('tgID')
-  
+    secret_value = os.getenv('secret')
+    tg_id_value = os.getenv('Tg-Id')
+    print(f"Secret value: {secret_value}")
+    print(f"TG ID value: {tg_id_value}")
     while True:
         make_post_request(url, secret_value, tg_id_value)
 
