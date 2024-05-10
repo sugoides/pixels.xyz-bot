@@ -1,7 +1,9 @@
 import requests
 import json
 import random
-import argparse
+import os
+
+
 url = 'https://api-clicker.pixelverse.xyz/api/users'
 def make_post_request(url,secret,tgID):
     random_number = random.randint(1, 50)
@@ -37,17 +39,12 @@ def make_post_request(url,secret,tgID):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Send POST requests with clicks amount.')
-    parser.add_argument('secret', type=str, help='Pixels.xyz telegram secret')
-    parser.add_argument('tgID', type=str, help='Telegram ID')
-    
-    args = parser.parse_args()
-
-    secret = args.secret
-    tgID = args.tgID
+    # Access environment variables
+    secret_value = os.environ.get('secret')
+    tg_id_value = os.environ.get('tgID')
   
     while True:
-        make_post_request(url, secret, tgID)
+        make_post_request(url, secret_value, tg_id_value)
 
 
 if __name__ == '__main__':

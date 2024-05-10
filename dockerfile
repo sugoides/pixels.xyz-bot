@@ -1,7 +1,7 @@
 FROM python:latest
 
-ARG secret=default_value
-ARG tgID=default_value
+ENV secret=default_value
+ENV tgID=default_value
 # Create app directory
 WORKDIR /app
 
