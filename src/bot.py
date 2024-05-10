@@ -42,8 +42,8 @@ def make_post_request(url,secret,tgID):
 
 def main():
     # Access environment variables
-    secret_value = os.getenv('secret')
-    tg_id_value = os.getenv('Tg-Id')
+    secret_value = os.getenv('SECRET')
+    tg_id_value = os.getenv('TGID')
     print(f"Secret value: {secret_value}")
     print(f"TG ID value: {tg_id_value}")
     while True:
