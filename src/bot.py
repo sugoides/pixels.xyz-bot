@@ -1,15 +1,15 @@
 import requests
 import json
 import random
-
-
-def make_post_request(url):
+import argparse
+url = 'https://api-clicker.pixelverse.xyz/api/users'
+def make_post_request(url,secret,tgID):
     random_number = random.randint(1, 50)
     # Specify headers with Content-Type as application/json
     
     headers = {'Content-Type': 'application/json',
-               'Secret': 'a64007894fe677faac92ab28bbfafbbb2d2b12d68f5a2c617ec1fdbbd814a16e',
-               'Tg-Id':'1739007386'
+               'Secret': secret,
+               'Tg-Id': tgID
                }
     postData = {"clicksAmount":random_number}
 
@@ -33,8 +33,22 @@ def make_post_request(url):
         print('Error making POST request:', e)
 
 
-url = 'https://api-clicker.pixelverse.xyz/api/users'
 
 
-while True:
-    make_post_request(url)
+
+def main():
+    parser = argparse.ArgumentParser(description='Send POST requests with clicks amount.')
+    parser.add_argument('secret', type=str, help='Pixels.xyz telegram secret')
+    parser.add_argument('tgID', type=str, help='Telegram ID')
+    
+    args = parser.parse_args()
+
+    secret = args.secret
+    tgID = args.tgID
+  
+    while True:
+        make_post_request(url, secret, tgID)
+
+
+if __name__ == '__main__':
+    main()

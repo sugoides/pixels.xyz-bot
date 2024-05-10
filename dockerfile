@@ -1,5 +1,7 @@
 FROM python:latest
 
+ARG secret=default_value
+ARG tgID=default_value
 # Create app directory
 WORKDIR /app
 
@@ -12,4 +14,4 @@ RUN pip install -r requirements.txt
 COPY src /app
 
 
-CMD [ "python", "bot.py" ]
+CMD [ "python", "bot.py", secret, tgID]
